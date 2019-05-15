@@ -8,7 +8,7 @@ zhique-markdown-editor
 
 ```bash
 git clone git@github.com:zhique-design/zhique-markdown-editor.git
-cd ssc
+cd zhique-markdown-editor
 git fetch origin master:dev_用户名
 git checkout dev_用户名
 yarn
