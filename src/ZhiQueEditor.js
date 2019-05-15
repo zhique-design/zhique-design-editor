@@ -2,10 +2,20 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import SplitPane from 'react-split-pane';
 import MarkDown from 'react-markdown';
+import { Controlled as CodeMirror } from 'react-codemirror2';
 import FreeScrollBar from 'react-free-scrollbar';
 
 import CodeBlock from './CodeBlock';
-import CodeMirrorEditor from './CodeMirror';
+
+import 'codemirror/lib/codemirror.css';
+import 'codemirror/theme/material.css';
+
+import 'codemirror/mode/gfm/gfm';
+import 'codemirror/mode/javascript/javascript';
+import 'codemirror/mode/python/python';
+import 'codemirror/mode/clike/clike';
+import 'codemirror/mode/jsx/jsx';
+import 'codemirror/mode/groovy/groovy';
 
 import './ZhiQueEditor.css';
 
@@ -20,12 +30,21 @@ class ZhiQueEditor extends Component {
         };
     }
 
-    handleChange = value => {
+    handleBeforeChange = (editor, data, value) => {
         this.setState({
-            text: value || ''
+            text: value,
         });
-        const { onChange } = this.props;
-        if (onChange) onChange(value)
+    };
+
+    handleChange = (editor, data, value) => {
+        // todo 完成onChange事件逻辑
+        const { onChange} = this.props;
+        if (onChange) onChange(value);
+    };
+
+    handleScroll = (editor, data) => {
+        const { onScroll} = this.props;
+        if (onScroll) onScroll(editor, data)
     };
 
     render() {
@@ -39,7 +58,7 @@ class ZhiQueEditor extends Component {
                     <div>
                         <SplitPane defaultSize="50%">
                             <div className="zhique-markdown-editor">
-                                <CodeMirrorEditor
+                                <CodeMirror
                                     options={{
                                         mode: 'gfm',
                                         theme: 'material',
@@ -47,8 +66,14 @@ class ZhiQueEditor extends Component {
                                         autofocus: true,
                                         scrollbarStyle: null
                                     }}
-                                    height={height}
+                                    value={text}
+                                    onBeforeChange={this.handleBeforeChange}
                                     onChange={this.handleChange}
+                                    onScroll={this.handleScroll}
+                                    editorDidMount={(editor) => {
+                                        editor.setSize('100%', height);
+                                        editor.setOption('lineWrapping', 'auto');
+                                    }}
                                 />
                             </div>
                             <div className="zhique-markdown-preview" style={{ height: typeof height === 'number' ? `${height}px` : height}}>
