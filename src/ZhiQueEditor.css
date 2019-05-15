@@ -1,0 +1,30 @@
+
+.zhique-markdown-editor-wrapper {
+  width: 100%;
+}
+
+.zhique-markdown-editor-toolbar {
+  height: 100%;
+  line-height: 50px;
+}
+
+.zhique-markdown-editor {
+  margin-left: 20px;
+  margin-right: 10px;
+}
+
+.zhique-markdown-preview {
+  padding-left: 10px;
+  padding-right: 20px;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.zhique-markdown-preview .FreeScrollbar-vertical-track {
+  background-color: transparent !important;
+  border-left: none !important;
+  right: -5px !important;
+}
+.zhique-markdown-preview .FreeScrollbar-vertical-handler {
+  width: 50% !important;
+}

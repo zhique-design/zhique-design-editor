@@ -10,7 +10,9 @@
     "react-component",
     "zhique"
   ],
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/zhique-design/zhique-markdown-editor"
@@ -23,11 +25,19 @@
     "dev": "webpack-dev-server"
   },
   "dependencies": {
+    "codemirror": "^5.46.0",
+    "highlight.js": "^9.15.6",
+    "prop-types": "^15.7.2",
     "react": "^16.8.6",
-    "react-dom": "^16.8.6"
+    "react-codemirror2": "^6.0.0",
+    "react-dom": "^16.8.6",
+    "react-free-scrollbar": "^0.3.4",
+    "react-markdown": "^4.0.8",
+    "react-split-pane": "^0.1.87"
   },
   "devDependencies": {
     "@babel/core": "^7.4.4",
+    "@babel/plugin-proposal-class-properties": "^7.4.4",
     "@babel/preset-env": "^7.4.4",
     "@babel/preset-react": "^7.0.0",
     "babel-loader": "^8.0.6",
