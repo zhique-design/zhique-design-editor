@@ -36,8 +36,7 @@
     "react-codemirror2": "^6.0.0",
     "react-dom": "^16.8.6",
     "react-free-scrollbar": "^0.3.4",
-    "react-markdown": "^4.0.8",
-    "react-split-pane": "^0.1.87"
+    "react-markdown": "^4.0.8"
   },
   "devDependencies": {
     "@babel/core": "^7.4.4",

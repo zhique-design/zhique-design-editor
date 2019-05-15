@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import SplitPane from 'react-split-pane';
 import MarkDown from 'react-markdown';
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // import { faFileImage } from '@fortawesome/free-regular-svg-icons';
@@ -55,44 +54,40 @@ class ZhiQueEditor extends Component {
         const { text } = this.state;
         return (
             <div className="zhique-markdown-editor-wrapper">
-                <SplitPane split="horizontal">
-                    <div className="zhique-markdown-editor-toolbar">
-                        {/*<span><FontAwesomeIcon icon={faFileImage} /></span>*/}
+                <div className="zhique-markdown-editor-toolbar">
+                    {/*<span><FontAwesomeIcon icon={faFileImage} /></span>*/}
+                </div>
+                <div style={{ width: '100%', height: typeof height === 'number' ? `${height}px` : height}}>
+                    <div className="zhique-markdown-editor">
+                        <CodeMirror
+                            options={{
+                                mode: 'gfm',
+                                theme: 'material',
+                                lineNumbers: true,
+                                autofocus: true,
+                                scrollbarStyle: null
+                            }}
+                            value={text}
+                            onBeforeChange={this.handleBeforeChange}
+                            onChange={this.handleChange}
+                            onScroll={this.handleScroll}
+                            editorDidMount={(editor) => {
+                                editor.setSize('100%', height);
+                                editor.setOption('lineWrapping', 'auto');
+                            }}
+                        />
                     </div>
-                    <div>
-                        <SplitPane defaultSize="50%">
-                            <div className="zhique-markdown-editor">
-                                <CodeMirror
-                                    options={{
-                                        mode: 'gfm',
-                                        theme: 'material',
-                                        lineNumbers: true,
-                                        autofocus: true,
-                                        scrollbarStyle: null
-                                    }}
-                                    value={text}
-                                    onBeforeChange={this.handleBeforeChange}
-                                    onChange={this.handleChange}
-                                    onScroll={this.handleScroll}
-                                    editorDidMount={(editor) => {
-                                        editor.setSize('100%', height);
-                                        editor.setOption('lineWrapping', 'auto');
-                                    }}
-                                />
-                            </div>
-                            <div className="zhique-markdown-preview" style={{ height: typeof height === 'number' ? `${height}px` : height}}>
-                                <FreeScrollBar>
-                                    <MarkDown
-                                        source={text}
-                                        renderers={{
-                                            code: CodeBlock
-                                        }}
-                                    />
-                                </FreeScrollBar>
-                            </div>
-                        </SplitPane>
+                    <div className="zhique-markdown-preview" style={{ height: typeof height === 'number' ? `${height}px` : height}}>
+                        <FreeScrollBar>
+                            <MarkDown
+                                source={text}
+                                renderers={{
+                                    code: CodeBlock
+                                }}
+                            />
+                        </FreeScrollBar>
                     </div>
-                </SplitPane>
+                </div>
             </div>
         )
     }
