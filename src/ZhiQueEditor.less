@@ -1,0 +1,55 @@
+.zhique-markdown-editor-wrapper {
+  width: 100%;
+  height: 100%;
+
+  .zhique-markdown-editor-toolbar {
+    height: 100%;
+    line-height: 50px;
+  }
+
+  .zhique-markdown-editor {
+    padding-left: 30px;
+    padding-right: 10px;
+  }
+
+  .zhique-markdown-preview {
+    padding-left: 10px;
+    padding-right: 30px;
+    height: 100%;
+    overflow: auto;
+
+    .FreeScrollbar-vertical-track {
+      background-color: transparent !important;
+      border-left: none !important;
+
+      .FreeScrollbar-vertical-handler {
+        width: 80% !important;
+        opacity: 0.5 !important;
+      }
+    }
+
+    .FreeScrollbar-horizontal-track {
+      background-color: transparent !important;
+      border-top: none !important;
+
+      .FreeScrollbar-horizontal-handler {
+        height: 80% !important;
+        opacity: 0.5 !important;
+      }
+    }
+  }
+
+  tr {
+    border-top: 1px solid #c6cbd1;
+    background: #fff;
+  }
+
+  th, td {
+    padding: 6px 13px;
+    border: 1px solid #dfe2e5;
+  }
+
+  table tr:nth-child(2n) {
+    background: #f6f8fa;
+  }
+}

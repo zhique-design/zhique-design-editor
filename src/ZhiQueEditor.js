@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import SplitPane from 'react-split-pane';
 import MarkDown from 'react-markdown';
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import { faFileImage } from '@fortawesome/free-regular-svg-icons';
 import { Controlled as CodeMirror } from 'react-codemirror2';
 import FreeScrollBar from 'react-free-scrollbar';
 
@@ -17,7 +19,7 @@ import 'codemirror/mode/clike/clike';
 import 'codemirror/mode/jsx/jsx';
 import 'codemirror/mode/groovy/groovy';
 
-import './ZhiQueEditor.css';
+import './ZhiQueEditor.less';
 
 
 class ZhiQueEditor extends Component {
@@ -54,7 +56,9 @@ class ZhiQueEditor extends Component {
         return (
             <div className="zhique-markdown-editor-wrapper">
                 <SplitPane split="horizontal">
-                    <div className="zhique-markdown-editor-toolbar">123</div>
+                    <div className="zhique-markdown-editor-toolbar">
+                        {/*<span><FontAwesomeIcon icon={faFileImage} /></span>*/}
+                    </div>
                     <div>
                         <SplitPane defaultSize="50%">
                             <div className="zhique-markdown-editor">
@@ -95,7 +99,6 @@ class ZhiQueEditor extends Component {
 }
 
 ZhiQueEditor.defaultProps = {
-    value: '',
     height: 500,
     onChange: undefined,
 };
