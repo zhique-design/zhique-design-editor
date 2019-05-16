@@ -1,0 +1,68 @@
+.zhique-markdown-editor-wrapper {
+  padding: 0 30px;
+  height: 100%;
+
+  .zhique-markdown-editor-toolbar {
+    height: 100%;
+    line-height: 50px;
+  }
+
+  .zhique-markdown-editor-area {
+    width: 100%;
+    background: #fff;
+
+    .zhique-markdown-editor {
+      margin-right: 10px;
+      width: calc(50% - 10px);
+      height: 100%;
+      float: left;
+
+      .react-codemirror2 {
+        height: 100%;
+      }
+    }
+
+    .zhique-markdown-preview {
+      margin-left: 10px;
+      width: calc(50% - 10px);
+      height: 100%;
+      float: right;
+      overflow: hidden;
+
+      .FreeScrollbar-vertical-track {
+        background-color: transparent !important;
+        border-left: none !important;
+
+        .FreeScrollbar-vertical-handler {
+          width: 80% !important;
+          opacity: 0.5 !important;
+        }
+      }
+
+      .FreeScrollbar-horizontal-track {
+        background-color: transparent !important;
+        border-top: none !important;
+
+        .FreeScrollbar-horizontal-handler {
+          height: 80% !important;
+          opacity: 0.5 !important;
+        }
+      }
+
+      tr {
+        border-top: 1px solid #c6cbd1;
+        background: #fff;
+      }
+
+      th, td {
+        padding: 6px 13px;
+        border: 1px solid #dfe2e5;
+      }
+
+      table tr:nth-child(2n) {
+        background: #f6f8fa;
+      }
+    }
+  }
+
+}
