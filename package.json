@@ -8,21 +8,30 @@
     "markdown-editor",
     "react",
     "react-component",
-    "zhique"
+    "zhique-design",
+    "zhique-design-editor"
   ],
+  "gh-pages-deploy": {
+    "noprompt": true,
+    "prep": [
+      "build"
+    ],
+    "staticpath": "dist"
+  },
   "files": [
     "dist"
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/zhique-design/zhique-markdown-editor"
+    "url": "https://github.com/zhique-design/zhique-design-editor"
   },
   "author": "徐昭 <xuzhao.zhique.design>",
   "license": "Apache",
   "private": false,
   "scripts": {
     "build": "webpack --env.NODE_ENV=production",
-    "dev": "webpack-dev-server"
+    "dev": "webpack-dev-server",
+    "deploy": "gh-pages-deploy"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.18",
@@ -44,6 +53,7 @@
     "@babel/preset-react": "^7.0.0",
     "babel-loader": "^8.0.6",
     "css-loader": "^2.1.1",
+    "gh-pages-deploy": "^0.5.1",
     "html-webpack-plugin": "^3.2.0",
     "less": "^3.9.0",
     "less-loader": "^5.0.0",
