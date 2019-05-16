@@ -29,6 +29,8 @@ class ZhiQueEditor extends Component {
         this.state = {
             text: value || '',
         };
+        this.previewArea = React.createRef();
+        this.editor = null;
     }
 
     handleBeforeChange = (editor, data, value) => {
@@ -44,8 +46,15 @@ class ZhiQueEditor extends Component {
     };
 
     handleScroll = (editor, data) => {
-        const { onScroll} = this.props;
-        if (onScroll) onScroll(editor, data)
+    };
+
+    handlePreviewScroll = () => {
+        if (this.previewArea.current) {
+            const { el: { scrollTop, scrollHeight } } = this.previewArea.current;
+            const { doc: { height } } = this.editor;
+            console.log(scrollTop / scrollHeight)
+            this.editor.scrollTo(0, height * scrollTop / scrollHeight);
+        }
     };
 
     render() {
@@ -57,7 +66,7 @@ class ZhiQueEditor extends Component {
                 <div className="zhique-markdown-editor-toolbar">
                     {/*<span><FontAwesomeIcon icon={faFileImage} /></span>*/}
                 </div>
-                <div style={{ width: '100%', height: typeof height === 'number' ? `${height}px` : height}}>
+                <div className="zhique-markdown-editor-area" style={{ height: typeof height === 'number' ? `${height}px` : height}}>
                     <div className="zhique-markdown-editor">
                         <CodeMirror
                             options={{
@@ -72,18 +81,20 @@ class ZhiQueEditor extends Component {
                             onChange={this.handleChange}
                             onScroll={this.handleScroll}
                             editorDidMount={(editor) => {
-                                editor.setSize('100%', height);
+                                editor.setSize('100%', '100%');
                                 editor.setOption('lineWrapping', 'auto');
+                                this.editor = editor;
                             }}
                         />
                     </div>
                     <div className="zhique-markdown-preview" style={{ height: typeof height === 'number' ? `${height}px` : height}}>
-                        <FreeScrollBar>
+                        <FreeScrollBar ref={this.previewArea} onScrollbarScroll={this.handlePreviewScroll} onScrollbarScrollTimeout={0}>
                             <MarkDown
                                 source={text}
                                 renderers={{
                                     code: CodeBlock
                                 }}
+                                escapeHtml={false}
                             />
                         </FreeScrollBar>
                     </div>

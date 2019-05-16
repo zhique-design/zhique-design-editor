@@ -1,5 +1,5 @@
 .zhique-markdown-editor-wrapper {
-  width: 100%;
+  padding: 0 30px;
   height: 100%;
 
   .zhique-markdown-editor-toolbar {
@@ -7,54 +7,62 @@
     line-height: 50px;
   }
 
-  .zhique-markdown-editor {
-    margin-left: 30px;
-    margin-right: 10px;
-    width: calc(50% - 40px);
-    height: 100%;
-    float: left;
-  }
-
-  .zhique-markdown-preview {
-    margin-left: 10px;
-    margin-right: 30px;
-    width: calc(50% - 40px);
-    height: 100%;
-    float: right;
-    overflow: auto;
-
-    .FreeScrollbar-vertical-track {
-      background-color: transparent !important;
-      border-left: none !important;
-
-      .FreeScrollbar-vertical-handler {
-        width: 80% !important;
-        opacity: 0.5 !important;
-      }
-    }
-
-    .FreeScrollbar-horizontal-track {
-      background-color: transparent !important;
-      border-top: none !important;
-
-      .FreeScrollbar-horizontal-handler {
-        height: 80% !important;
-        opacity: 0.5 !important;
-      }
-    }
-  }
-
-  tr {
-    border-top: 1px solid #c6cbd1;
+  .zhique-markdown-editor-area {
+    width: 100%;
     background: #fff;
+
+    .zhique-markdown-editor {
+      margin-right: 10px;
+      width: calc(50% - 10px);
+      height: 100%;
+      float: left;
+
+      .react-codemirror2 {
+        height: 100%;
+      }
+    }
+
+    .zhique-markdown-preview {
+      margin-left: 10px;
+      width: calc(50% - 10px);
+      height: 100%;
+      float: right;
+      overflow: auto;
+
+      .FreeScrollbar-vertical-track {
+        background-color: transparent !important;
+        border-left: none !important;
+
+        .FreeScrollbar-vertical-handler {
+          width: 80% !important;
+          opacity: 0.5 !important;
+        }
+      }
+
+      .FreeScrollbar-horizontal-track {
+        background-color: transparent !important;
+        border-top: none !important;
+
+        .FreeScrollbar-horizontal-handler {
+          height: 80% !important;
+          opacity: 0.5 !important;
+        }
+      }
+
+      tr {
+        border-top: 1px solid #c6cbd1;
+        background: #fff;
+      }
+
+      th, td {
+        padding: 6px 13px;
+        border: 1px solid #dfe2e5;
+      }
+
+      table tr:nth-child(2n) {
+        background: #f6f8fa;
+      }
+    }
   }
 
-  th, td {
-    padding: 6px 13px;
-    border: 1px solid #dfe2e5;
-  }
-
-  table tr:nth-child(2n) {
-    background: #f6f8fa;
-  }
 }
