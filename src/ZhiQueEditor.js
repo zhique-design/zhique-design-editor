@@ -4,12 +4,28 @@ import MarkDown from 'react-markdown';
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // import { faFileImage } from '@fortawesome/free-regular-svg-icons';
 import { Controlled as CodeMirror } from 'react-codemirror2';
-import FreeScrollBar from 'react-free-scrollbar';
 
 import CodeBlock from './CodeBlock';
 
 import 'codemirror/lib/codemirror.css';
 import 'codemirror/theme/material.css';
+
+import 'codemirror/addon/scroll/simplescrollbars.css'
+import 'codemirror/addon/scroll/simplescrollbars';
+
+import 'codemirror/addon/fold/foldcode';
+import 'codemirror/addon/fold/foldgutter.css'
+import 'codemirror/addon/fold/foldgutter';
+import 'codemirror/addon/fold/brace-fold';
+import 'codemirror/addon/fold/comment-fold';
+import 'codemirror/addon/fold/indent-fold';
+import 'codemirror/addon/fold/markdown-fold';
+import 'codemirror/addon/fold/xml-fold';
+
+import 'codemirror/addon/edit/closebrackets';
+import 'codemirror/addon/edit/matchbrackets';
+import 'codemirror/addon/edit/closetag';
+import 'codemirror/addon/edit/matchtags';
 
 import 'codemirror/mode/gfm/gfm';
 import 'codemirror/mode/javascript/javascript';
@@ -42,6 +58,10 @@ class ZhiQueEditor extends Component {
     handleChange = (editor, data, value) => {
         // todo 完成onChange事件逻辑
         const { onChange} = this.props;
+        const { height, top } = data;
+        const previewArea = this.previewArea.current;
+        const { scrollHeight } = previewArea;
+        previewArea.scrollTo(0, scrollHeight * top / height + Math.max(0, scrollHeight - height) * top / height);
         if (onChange) onChange(value);
     };
 
@@ -78,7 +98,13 @@ class ZhiQueEditor extends Component {
                                 theme: 'material',
                                 lineNumbers: true,
                                 autofocus: true,
-                                scrollbarStyle: null
+                                scrollbarStyle: "overlay",
+                                foldGutter: true,
+                                gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"],
+                                matchBrackets: true,
+                                autoCloseBrackets: true,
+                                matchTags: true,
+                                autoCloseTags: true,
                             }}
                             value={text}
                             onBeforeChange={this.handleBeforeChange}

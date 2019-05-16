@@ -35,7 +35,6 @@
     "react": "^16.8.6",
     "react-codemirror2": "^6.0.0",
     "react-dom": "^16.8.6",
-    "react-free-scrollbar": "^0.3.4",
     "react-markdown": "^4.0.8"
   },
   "devDependencies": {
