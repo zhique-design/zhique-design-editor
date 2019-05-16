@@ -1,5 +1,5 @@
 {
-  "name": "zhique-markdown-editor",
+  "name": "zhique-design-editor",
   "version": "1.0.0",
   "description": "markdown editor as React components",
   "main": "dist/bundle.js",

@@ -56,7 +56,6 @@ class ZhiQueEditor extends Component {
     };
 
     handleChange = (editor, data, value) => {
-        // todo 完成onChange事件逻辑
         const { onChange} = this.props;
         const { height, top } = data;
         const previewArea = this.previewArea.current;
