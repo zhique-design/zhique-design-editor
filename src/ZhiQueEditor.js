@@ -49,7 +49,7 @@ class ZhiQueEditor extends Component {
         const { height, top } = data;
         const previewArea = this.previewArea.current;
         const { scrollHeight } = previewArea;
-        previewArea.scrollTo(0, scrollHeight * top / height);
+        previewArea.scrollTo(0, scrollHeight * top / height + Math.max(0, scrollHeight - height) * top / height);
     };
 
     handleWheel = e => {
