@@ -10,5 +10,4 @@ install:
   - yarn
 
 script:
-  - yarn run build:demo
   - yarn run deploy

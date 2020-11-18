@@ -116,7 +116,6 @@ const config = {
     new MiniCssExtractPlugin({
       filename: 'static/css/[name].[hash:8].css',
       chunkFilename: 'static/css/[name].chunk.[hash:8].css',
-      name: true
     }),
     new WebpackBar({ profile: true }),
     new StylelintPlugin({
