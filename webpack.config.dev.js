@@ -42,7 +42,7 @@ const config = {
     hot: true,
     open: true,
   },
-  devtool: 'eval-cheap-module-source-map',
+  devtool: production ? false : 'eval-cheap-module-source-map',
   module: {
     rules: [
       {

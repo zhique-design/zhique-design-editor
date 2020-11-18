@@ -3,9 +3,13 @@ language: node_js
 node_js:
   - node
 
+before_install:
+  - npm i -g yarn
+
 install:
-  - npm install
+  - yarn
 
 script:
-  - npm run build
-  - npm run build:demo
+  - yarn run build
+  - yarn run build:demo
+  - yarn run deploy
