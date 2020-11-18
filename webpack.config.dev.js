@@ -108,6 +108,8 @@ const config = {
   },
   plugins: [
     new CleanWebpackPlugin({
+      dry: false,
+      verbose: true,
       cleanOnceBeforeBuildPatterns: [path.resolve(__dirname, 'demo', 'dist')]
     }),
     new HtmlWebpackPlugin({
@@ -133,8 +135,8 @@ const config = {
       emitWarning: true,
       failOnError: true,
       failOnWarning: true,
-      overrideConfigFile: path.join(__dirname, '.eslintrc.js'),
       fix: true,
+      exclude: ['node_modules', 'dist', 'demo/dist']
     }),
   ]
 };
