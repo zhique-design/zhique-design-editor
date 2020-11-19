@@ -1,8 +1,30 @@
 {
-  "name": "zhique-editor",
-  "version": "1.0.0",
-  "main": "index.js",
-  "license": "MIT",
+  "name": "@zhique-design/zhique-editor",
+  "description": "online editor as React components",
+  "main": "dist/index.js",
+  "keywords": [
+    "markdown",
+    "markdown-editor",
+    "react",
+    "react-markdown-editor",
+    "react-component",
+    "zhique-design",
+    "zhique-editor"
+  ],
+  "files": [
+    "dist"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zhique-design/zhique-editor.git"
+  },
+  "bugs": {
+    "url": "https://github.com/zhique-design/zhique-editor/issues"
+  },
+  "homepage": "https://editor.zhique.design",
+  "author": "xuzhao <xuzhao@zhique.design>",
+  "license": "Apache-2.0",
+  "private": false,
   "scripts": {
     "build": "webpack -p --env.NODE_ENV=production",
     "start:demo": "webpack-dev-server -p --config webpack.config.dev.js",
@@ -62,6 +84,7 @@
     "webpack-cli": "^3.0.0",
     "webpack-dev-server": "^3.11.0",
     "webpack-merge": "^5.2.0",
+    "webpack-node-externals": "^2.5.2",
     "webpackbar": "^4.0.0"
   },
   "dependencies": {
@@ -70,6 +93,7 @@
     "github-markdown-css": "^4.0.0",
     "mobx": "^5.0.0",
     "mobx-react": "^6.0.0",
+    "moment": "^2.29.1",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
     "react-markdown": "^5.0.1",

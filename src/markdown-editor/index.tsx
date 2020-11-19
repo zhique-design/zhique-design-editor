@@ -5,6 +5,7 @@ import { observer } from 'mobx-react';
 import classNames from 'classnames';
 import { observable } from 'mobx';
 import CodeMirror from 'codemirror';
+import moment from 'moment';
 import Dialog, { ImageDialog } from '@/components/dialog';
 
 import Icon from '@/components/icon';
@@ -24,6 +25,8 @@ interface MarkdownEditorProps {
   watch?: boolean;
   fullScreen?: boolean;
   menuList?: (cm?: CodeMirror) => MenuListConfig;
+  dateFormat?: string;
+  onChange?: (value?: string) => void;
 }
 
 interface EditorUIProps {
@@ -44,6 +47,7 @@ export default class MarkdownEditor extends Component<MarkdownEditorProps> {
     height: 500,
     classPrefix: 'zhique-md',
     watch: true,
+    dateFormat: 'YYYY年MM月DD日 dddd'
   };
 
   @observable text?: string;
@@ -493,7 +497,6 @@ export default class MarkdownEditor extends Component<MarkdownEditorProps> {
           }
         },
       },
-      '|',
       {
         title: '表格',
         icon: 'table',
@@ -510,7 +513,7 @@ export default class MarkdownEditor extends Component<MarkdownEditorProps> {
               container: this.dialogContainer,
               editor: this.editor,
               width: 400,
-              title: '跳转到行',
+              title: '表格',
               footer: [
                 {
                   text: '确定',
@@ -557,6 +560,17 @@ export default class MarkdownEditor extends Component<MarkdownEditorProps> {
           }
         },
       },
+      {
+        title: '日期时间',
+        icon: 'time-circle',
+        onClick: () => {
+          const { dateFormat } = this.props;
+          cm.focus();
+          moment.locale(navigator.language);
+          cm.replaceSelection(moment().format(dateFormat));
+        }
+      },
+      '|',
       {
         title: '跳转到行',
         icon: 'terminal',
@@ -730,6 +744,8 @@ export default class MarkdownEditor extends Component<MarkdownEditorProps> {
           value={this.text}
           onChange={(value) => {
             this.text = value;
+            const { onChange } = this.props;
+            if (onChange) onChange(value);
           }}
           onCmScroll={this.previewBlockSyncScroll}
           options={{

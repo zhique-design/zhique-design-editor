@@ -2,7 +2,7 @@
   "compilerOptions": {
     "experimentalDecorators": true,
     "module": "esnext",
-    "target": "esnext",
+    "target": "es5",
     "sourceMap": true,
     "jsx": "react",
     "strict": true,
@@ -14,14 +14,16 @@
     "allowSyntheticDefaultImports": true,
     "baseUrl": ".",
     "typeRoots": ["typings"],
+    "declaration": true,
     "outDir": "dist",
+    "isolatedModules": false,
     "paths": {
       "@/*": ["src/*"]
     }
   },
   "include": [
-    "src",
-    "demo/src"
+    "src/**/*.ts",
+    "src/**/*.tsx"
   ],
   "exclude": [
     "node_modules"
