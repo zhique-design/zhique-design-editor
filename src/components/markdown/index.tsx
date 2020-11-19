@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import ReactMarkdown, { ReactMarkdownPropsBase } from 'react-markdown';
+import gfm from 'remark-gfm';
+import { Code } from './renderer';
 
 interface MarkdownProps extends ReactMarkdownPropsBase {
   readonly value?: string;
@@ -14,7 +16,15 @@ class Markdown extends Component<MarkdownProps> {
   render() {
       const { value, ...rest } = this.props;
       return (
-        <ReactMarkdown {...rest}>
+        <ReactMarkdown
+          plugins={[
+            gfm,
+          ]}
+          renderers={{
+            code: Code
+          }}
+          {...rest}
+        >
           {value || ''}
         </ReactMarkdown>
       );
