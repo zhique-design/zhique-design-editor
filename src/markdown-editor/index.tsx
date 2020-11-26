@@ -43,7 +43,7 @@ interface EditorUIProps {
 export default class MarkdownEditor extends Component<MarkdownEditorProps> {
 
   static defaultProps = {
-    width: '100%',
+    width: '90%',
     height: 500,
     classPrefix: 'zhique-md',
     watch: true,
@@ -657,27 +657,29 @@ export default class MarkdownEditor extends Component<MarkdownEditorProps> {
     }
   };
 
-  codeBlockSyncScroll = (e) => {
-    const { clientHeight: height, scrollTop, scrollHeight } = e.currentTarget;
-    const percent = scrollTop / scrollHeight;
-    const codeScroller = this.codeBlock?.cm?.display.scroller;
-    if (codeScroller) {
-      if (scrollTop === 0) {
-        codeScroller.scrollTop = 0;
-      } else if (scrollTop + height >= scrollHeight) {
-        codeScroller.scrollTop = codeScroller.scrollHeight;
-      } else {
-        codeScroller.scrollTop = codeScroller.scrollHeight * percent;
+  codeBlockSyncScroll = () => {
+    if (this.previewBlock) {
+      const { clientHeight: height, scrollTop, scrollHeight } = this.previewBlock;
+      const percent = scrollTop / scrollHeight;
+      const codeScroller = this.codeBlock?.cm?.display.scroller;
+      if (codeScroller) {
+        if (scrollTop === 0) {
+          codeScroller.scrollTop = 0;
+        } else if (scrollTop + height >= scrollHeight) {
+          codeScroller.scrollTop = codeScroller.scrollHeight;
+        } else {
+          codeScroller.scrollTop = codeScroller.scrollHeight * percent;
+        }
       }
     }
   };
 
-  bindSyncScroll = (e) => {
-    e.currentTarget.addEventListener('scroll', this.codeBlockSyncScroll);
+  bindSyncScroll = () => {
+    this.previewBlock?.addEventListener('scroll', this.codeBlockSyncScroll);
   };
 
-  unbindSyncScroll = (e) => {
-    e.currentTarget.removeEventListener('scroll', this.codeBlockSyncScroll);
+  unbindSyncScroll = () => {
+    this.previewBlock?.removeEventListener('scroll', this.codeBlockSyncScroll);
   };
 
   destroyDialog = (dialog) => {
@@ -762,9 +764,11 @@ export default class MarkdownEditor extends Component<MarkdownEditorProps> {
             ref={(node) => {
               this.previewBlock = node;
             }}
-            onFocus={this.bindSyncScroll}
+            onMouseOver={this.bindSyncScroll}
+            onFocus={() => undefined}
             onTouchStart={this.bindSyncScroll}
-            onBlur={this.unbindSyncScroll}
+            onMouseOut={this.unbindSyncScroll}
+            onBlur={() => undefined}
             onTouchEnd={this.unbindSyncScroll}
           >
             <div
