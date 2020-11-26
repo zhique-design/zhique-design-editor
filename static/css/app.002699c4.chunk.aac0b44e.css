@@ -255,10 +255,9 @@
 .zhique-md-editor .zhique-md-preview {
   overflow: auto;
   line-height: 1.6;
-  padding-top: 15px;
 }
 .zhique-md-editor .zhique-md-preview .zhique-md-preview-container {
-  margin: 0 15px;
+  margin: 15px;
 }
 .zhique-md-editor .zhique-md-mask {
   position: absolute;
