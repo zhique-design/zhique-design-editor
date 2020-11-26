@@ -4,7 +4,7 @@ import Markdown from '@/components/markdown';
 import { observer } from 'mobx-react';
 import classNames from 'classnames';
 import { observable } from 'mobx';
-import CodeMirror from 'codemirror';
+import CodeMirror, { EditorConfiguration } from 'codemirror';
 import moment from 'moment';
 import Dialog, { ImageDialog } from '@/components/dialog';
 
@@ -27,6 +27,7 @@ interface MarkdownEditorProps {
   menuList?: (cm?: CodeMirror) => MenuListConfig;
   dateFormat?: string;
   onChange?: (value?: string) => void;
+  cmOptions?: EditorConfiguration;
 }
 
 interface EditorUIProps {
@@ -716,7 +717,7 @@ export default class MarkdownEditor extends Component<MarkdownEditorProps> {
   };
 
   render() {
-    const { classPrefix } = this.props;
+    const { classPrefix, cmOptions } = this.props;
     const {
       width,
       height,
@@ -750,9 +751,7 @@ export default class MarkdownEditor extends Component<MarkdownEditorProps> {
             if (onChange) onChange(value);
           }}
           onCmScroll={this.previewBlockSyncScroll}
-          options={{
-            mode: 'gfm',
-          }}
+          options={cmOptions}
           ref={(node) => {
             this.codeBlock = node;
           }}
