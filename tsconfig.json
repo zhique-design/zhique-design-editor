@@ -1,29 +1,26 @@
 {
   "compilerOptions": {
     "experimentalDecorators": true,
-    "module": "esnext",
-    "target": "es5",
+    "target": "esnext",
     "sourceMap": true,
+    "declaration": true,
     "jsx": "react",
     "strict": true,
-    "allowJs": true,
     "moduleResolution": "node",
     "noImplicitAny": false,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "allowSyntheticDefaultImports": true,
     "baseUrl": ".",
+    "types": ["node"],
     "typeRoots": ["typings"],
-    "declaration": true,
     "outDir": "dist",
-    "isolatedModules": false,
     "paths": {
       "@/*": ["src/*"]
     }
   },
   "include": [
-    "src/**/*.ts",
-    "src/**/*.tsx"
+    "src"
   ],
   "exclude": [
     "node_modules"

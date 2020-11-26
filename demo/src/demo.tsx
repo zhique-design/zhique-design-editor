@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDom from 'react-dom';
 
-import { MarkdownEditor } from '@zhique-design/zhique-editor';
+import { MarkdownEditor } from '../../src';
 
 import 'codemirror/lib/codemirror';
 import 'codemirror/lib/codemirror.css';

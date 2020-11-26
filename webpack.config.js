@@ -1,4 +1,5 @@
 const path = require('path');
+const webpack = require('webpack');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const WebpackBar = require('webpackbar');
 const ESLintPlugin = require('eslint-webpack-plugin');
@@ -14,7 +15,8 @@ const config = {
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'index.js'
+    filename: '[name].js',
+    libraryTarget: 'commonjs2',
   },
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.jsx'],
@@ -37,16 +39,7 @@ const config = {
       {
         test: /\.(css|less)$/,
         exclude:/node_modules/,
-        use: [
-          {
-            loader: 'css-loader',
-            options: {
-              modules: false,
-              esModule: true
-            }
-          },
-          'less-loader',
-        ]
+        use: ['style-loader', 'css-loader', 'less-loader']
       },
       {
         test: /\.(png|jpg|gif|eot|woff|ttf|svg)$/i,
@@ -74,6 +67,9 @@ const config = {
       dry: false,
       verbose: true,
       cleanOnceBeforeBuildPatterns: [path.resolve(__dirname, 'dist')]
+    }),
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development')
     }),
     new WebpackBar({ profile: true }),
     new StylelintPlugin({
